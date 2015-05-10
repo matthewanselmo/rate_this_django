@@ -1,0 +1,8 @@
+- image_store
+	- displays a carosoul of random users images
+	- users post images
+	- users can plus an image to increase visibility
+
+	- images are tagged (design, food, beauty) by the poster
+		- tags are suggested to the user
+
