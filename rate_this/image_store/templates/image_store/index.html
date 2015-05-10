@@ -3,5 +3,14 @@
 {% block title %}Posts{% endblock %}
 
 {% block body_block %}
-<p>hi</p>
+
+	<h1>Hey, {{ user }} </h1>
+    <hr>   
+    {% if user.is_authenticated %}
+        <h1>auth </h1>
+        <hr>  
+    {% else %}
+        <h1>not auth </h1>
+        <hr> 
+    {% endif %}
 {% endblock %}

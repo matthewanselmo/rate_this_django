@@ -3,15 +3,21 @@
 {% block title %}Login{% endblock %}
 
 {% block body_block %}
-	<h1>Login</h1>
-	
-	<form method="post" action=".">
-		{% csrf_token %}
-		{{ form.as_p }}
 
-		<input type="submit" value="Log in" />
+{% load bootstrap %}
+
+<h1>Login</h1>
+<hr>
+
+<div class="service-box ">
+    <form class="form-horizontal" method="post" action=".">
+		{% csrf_token %}
+		{{ form|bootstrap_horizontal:'col-lg-4' }}		
+	      
+	     <button type="submit" class="btn btn-primary">Log in</button>
+	   					
 		<input type="hidden" name="next" value="{{ next }}" />
 	</form>
-
-	<p>Not a member? <a href="{% url 'registration_register' %}">Register</a>!</p>
+</div>
+    
 {% endblock %}

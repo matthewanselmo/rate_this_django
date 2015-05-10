@@ -3,13 +3,19 @@
 {% block title %}Post{% endblock %}
 
 {% block body_block %}
-<form id="user_image_form" method="post" action="/posts/upload/"
-        enctype="multipart/form-data">
 
-    {% csrf_token %}
+{% load bootstrap %}
 
-    {{ user_image_form.as_p }}
-    
-    <input type="submit" name="submit" value="Post" />
-</form>
+<h1>Upload</h1>
+<hr>
+
+<div class="service-box ">
+    <form enctype="multipart/form-data" class="form-horizontal" method="post" action="/posts/upload/">
+		{% csrf_token %}
+		{{ user_image_form|bootstrap_horizontal:'col-lg-4' }}		
+	      
+	     <button type="submit" class="btn btn-primary">Post</button>
+
+	</form>
+</div>
 {% endblock %}
