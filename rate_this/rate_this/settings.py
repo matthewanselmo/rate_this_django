@@ -45,6 +45,9 @@ REGISTRATION_AUTO_LOGIN = True
 LOGIN_REDIRECT_URL = '/posts/'
 # The page users are directed to if they are not logged in
 LOGIN_URL = '/accounts/login/'
+LOGIN_EXEMPT_URLS = (
+    r'^accounts/register',
+)
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -55,6 +58,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'rate_this.middlewares.LoginRequiredMiddleware'
 )
 
 ROOT_URLCONF = 'rate_this.urls'
