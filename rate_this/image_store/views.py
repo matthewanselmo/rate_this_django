@@ -1,10 +1,19 @@
 from django.shortcuts import render
 
 from .forms import UserImageForm
+from .models import UserImage
 
 
 def index(request):
     return render(request, 'image_store/index.html')
+
+
+def explore(request):
+    loop_times = [i+1 for i in range(3)]
+    posts = UserImage.objects.all().order_by('-created')[:3]
+
+    return render(request, 'image_store/explore.html', {'loop_times': loop_times,
+                  'posts': posts})
 
 
 def uploadImage(request):
