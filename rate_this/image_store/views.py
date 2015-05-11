@@ -8,12 +8,16 @@ def index(request):
     return render(request, 'image_store/index.html')
 
 
-def explore(request):
-    loop_times = [i+1 for i in range(3)]
-    posts = UserImage.objects.all().order_by('-created')[:3]
+def explore(request, page=0):
 
-    return render(request, 'image_store/explore.html', {'loop_times': loop_times,
-                  'posts': posts})
+    low = int(page) * 9
+    high = low + 9
+
+    posts = UserImage.objects.all().order_by('-created')[low:high]
+
+    page = int(page) + 1
+    return render(request, 'image_store/explore.html', {'posts': posts,
+                  'page': page})
 
 
 def uploadImage(request):
