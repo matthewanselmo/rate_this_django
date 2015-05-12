@@ -15,12 +15,13 @@ def explore(request, page=0):
 
     posts = UserImage.objects.all().order_by('-created')[low:high]
 
-    page = int(page) + 1
+    next_page = int(page) + 1
+    prev_page = int(page) - 1
     return render(request, 'image_store/explore.html', {'posts': posts,
-                  'page': page})
+                  'next_page': next_page, 'prev_page': prev_page})
 
 
-def uploadImage(request):
+def post(request):
 
     if request.method == 'POST':
         user_image_form = UserImageForm(request.POST, request.FILES)

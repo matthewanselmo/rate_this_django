@@ -43,7 +43,7 @@ INSTALLED_APPS = (
 REGISTRATION_OPEN = True
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
-LOGIN_REDIRECT_URL = '/posts/'
+LOGIN_REDIRECT_URL = '/'
 # The page users are directed to if they are not logged in
 LOGIN_URL = '/accounts/login/'
 LOGIN_EXEMPT_URLS = (

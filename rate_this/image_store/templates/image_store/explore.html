@@ -3,10 +3,9 @@
 {% block title %}Posts{% endblock %}
 
 {% block body_block %}
- 
+
 	<div role="tabpanel" class="tab-pane active" id="panel-1">
 		<div class="row masonry-container">
-
 			{% for post in posts %}
 			<div class="col-md-4 col-sm-6 item">
 				<div class="thumbnail">
@@ -22,13 +21,25 @@
 				</div>
 			</div>
 			{% endfor %}
-
 		</div><!--End masonry-container  -->
-	</div><!--End panel-1  -->
-   	
-   	<a href="/posts/explore/{{ page }}" class="btn btn-primary btn-block" role="button">View More</a> 
+	</div><!--End panel-1  -->   	
+
+	{% if prev_page >= 0 %}
+   	<div class="col-xs-6"> 
+		
+		<a href="/explore/{{ prev_page }}" class="btn btn-default btn-block" role="button">Previous</a> 
+	   	   	
+
+	</div>   
+	<div class="col-xs-6"> 
+	{% else %}
+	<div> 
+	{% endif %}	
+		<a href="/explore/{{ next_page }}" class="btn btn-primary btn-block" role="button">Next</a> 
+	</div>   	
 	
-	<script type="text/javascript">
+	<script type="text/javascript" defer="defer">	
+
 		var $container = $('.masonry-container');
 		$container.imagesLoaded( function () {
 			$container.masonry({
@@ -36,6 +47,7 @@
 				itemSelector: '.item'
 			});   
 		});
+	
 	</script>
 
 {% endblock %}

@@ -33,7 +33,7 @@ urlpatterns = [
     url(r'^accounts/register/$', MyRegistrationView.as_view(),
         name='registration_register'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
-    url(r'^posts/', include('image_store.urls')),
+    url(r'^/', include('image_store.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # urlpatterns += patterns('',

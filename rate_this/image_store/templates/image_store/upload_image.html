@@ -10,7 +10,7 @@
 <hr>
 
 <div class="service-box ">
-    <form enctype="multipart/form-data" class="form-horizontal" method="post" action="/posts/upload/">
+    <form enctype="multipart/form-data" class="form-horizontal" method="post" action="/post/">
 		{% csrf_token %}
 		{{ user_image_form|bootstrap_horizontal:'col-lg-4' }}		
 	      

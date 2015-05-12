@@ -1,0 +1,8 @@
+Django==1.8.1
+django-bootstrap-form==3.2
+django-forms-bootstrap==3.0.1
+django-registration-redux==1.1
+mysql-connector-python==2.0.3
+Pillow==2.8.1
+PyMySQL==0.6.6
+virtualenv==12.1.1

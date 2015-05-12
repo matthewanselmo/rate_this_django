@@ -3,11 +3,19 @@
 {% block title %}Register{% endblock %}
 
 {% block body_block %}
-<h1>Register Here</h1>
-    <form method="post" action=".">
-            {% csrf_token %}
-            {{ form.as_p }}
 
-            <input type="submit" value="Submit" />
-    </form>
+{% load bootstrap %}
+
+<div class="col-md-offset-3 col-md-6">
+	<h1>Register</h1>
+	<hr>
+	<div class="service-box ">
+	    <form class="form-horizontal" method="post" action=".">
+	        {% csrf_token %}
+	        {{ form|bootstrap }}		
+		      
+		     <button type="submit" class="btn btn-primary">Log in</button>
+		</form>
+	</div>
+</div>
 {% endblock %}
