@@ -1,0 +1,18 @@
+{% extends "rate_this/base.html" %}
+
+{% block title %}{{post.title}}{% endblock %}
+
+{% block body_block %}
+
+<h1>{{post.title}}</h1>
+<hr>
+<img src="/media/{{post.image}}"class="img-responsive img-rounded">
+<hr>
+<div class="col-md-8">
+	<p>{{post.description}}</p>
+</div>
+<div class="col-md-4">
+	<p>Upvotes : {{post.upvotes}} <button class="btn btn-primary btn pull-right">Upvote!</button></p>
+</div>
+<hr>
+{% endblock %}
