@@ -43,9 +43,9 @@ def upload(request):
 
 def viewPost(request, postId=0):
     post = Post.objects.get(id=postId)
-    comments = Comment.get_comments_for_post(post)
+    comments = Comment.objects.get_comments_for_post(post)
     comment_form = CommentForm()
-    can_upvote = UserUpvote.can_user_upvote(post, request.user)
+    can_upvote = UserUpvote.objects.can_user_upvote(post, request.user)
 
     return render(request, 'image_store/post.html',
                   {'post': post, 'comments': comments,
@@ -73,7 +73,7 @@ def upvote(request, postId=0):
     _post = Post.objects.get(id=postId)
 
     if request.method == 'POST':
-        if UserUpvote.can_user_upvote(_post, request.user):
+        if UserUpvote.objects.can_user_upvote(_post, request.user):
             _post.upvotes += 1
             _post.save()
 
