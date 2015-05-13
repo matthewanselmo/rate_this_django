@@ -12,3 +12,13 @@ class Post(models.Model):
 
     def __unicode__(self):
         return self.title
+
+
+class Comment(models.Model):
+    text = models.CharField(max_length=140)
+    user = models.ForeignKey(User)
+    post = models.ForeignKey(Post)
+
+    def get_comments_for_user(Post, User):
+        comments = Comment.objects.filter(post_id=Post.id)
+        return comments

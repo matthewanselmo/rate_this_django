@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
-from .forms import PostForm
-from .models import Post
+from .forms import PostForm, CommentForm
+from .models import Post, Comment
 
 
 def index(request):
@@ -41,7 +41,21 @@ def upload(request):
         'post_form': post_form})
 
 
-def post(request, postId=0):
+def viewPost(request, postId=0):
     post = Post.objects.get(id=postId)
+    comments = Comment.get_comments_for_user(post, request.user)
 
-    return render(request, 'image_store/post.html', {'post': post})
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.user = request.user
+            comment.post = post
+            comment.save()
+
+            request.method = 'GET'
+            return viewPost(request, postId)
+    else:
+        comment_form = CommentForm()
+
+    return render(request, 'image_store/post.html', {'post': post, 'comments': comments, 'comment_form': comment_form})
