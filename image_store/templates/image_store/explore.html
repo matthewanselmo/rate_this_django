@@ -8,16 +8,12 @@
 		<div class="row masonry-container">
 			{% for post in posts %}
 			<div class="col-md-4 col-sm-6 item">
-				<div class="thumbnail">
+				<div class="thumbnail" href="/media/{{ post.image }}" data-toggle="lightbox" data-title="{{ post.title }}" data-footer="{{ post.description }}">
 				<img src="/media/{{ post.image }}" alt="">
-				<div class="caption">
-					<h3>{{ post.title }}</h3>
-					<p>{{ post.description }}</p>
-					<p>
-						<a href="#" class="btn btn-primary" role="button">Button</a> 
-						<a href="#" class="btn btn-default" role="button">Button</a>
-					</p>
-				</div>
+					<div class="caption">
+						<h3>{{ post.title }}</h3>
+						<p>{{ post.description }}</p>						
+					</div>
 				</div>
 			</div>
 			{% endfor %}
@@ -25,11 +21,8 @@
 	</div><!--End panel-1  -->   	
 
 	{% if prev_page >= 0 %}
-   	<div class="col-xs-6"> 
-		
-		<a href="/explore/{{ prev_page }}" class="btn btn-default btn-block" role="button">Previous</a> 
-	   	   	
-
+   	<div class="col-xs-6"> 		
+		<a href="/explore/{{ prev_page }}" class="btn btn-default btn-block" role="button">Previous</a>
 	</div>   
 	<div class="col-xs-6"> 
 	{% else %}
@@ -47,7 +40,11 @@
 				itemSelector: '.item'
 			});   
 		});
-	
+		
+		$(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+		    event.preventDefault();
+		    $(this).ekkoLightbox();
+		}); 
 	</script>
 
 {% endblock %}
