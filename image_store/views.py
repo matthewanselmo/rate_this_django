@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
-from .forms import UserImageForm
-from .models import UserImage
+from .forms import PostForm
+from .models import Post
 
 
 def index(request):
@@ -13,7 +13,7 @@ def explore(request, page=0):
     low = int(page) * 9
     high = low + 9
 
-    posts = UserImage.objects.all().order_by('-created')[low:high]
+    posts = Post.objects.all().order_by('-created')[low:high]
 
     next_page = int(page) + 1
     prev_page = int(page) - 1
@@ -21,21 +21,27 @@ def explore(request, page=0):
                   'next_page': next_page, 'prev_page': prev_page})
 
 
-def post(request):
+def upload(request):
 
     if request.method == 'POST':
-        user_image_form = UserImageForm(request.POST, request.FILES)
+        post_form = PostForm(request.POST, request.FILES)
 
-        if user_image_form.is_valid():
-            user_image = user_image_form.save(commit=False)
-            user_image.user = request.user
-            user_image.save()
+        if post_form.is_valid():
+            post = post_form.save(commit=False)
+            post.user = request.user
+            post.save()
 
             return index(request)
         else:
-            print(user_image_form.errors)
+            print(post_form.errors)
     else:
-        user_image_form = UserImageForm()
+        post_form = PostForm()
 
-    return render(request, 'image_store/upload_image.html', {
-        'user_image_form': user_image_form})
+    return render(request, 'image_store/upload.html', {
+        'post_form': post_form})
+
+
+def post(request, postId=0):
+    post = Post.objects.get(id=postId)
+
+    return render(request, 'image_store/post.html', {'post': post})

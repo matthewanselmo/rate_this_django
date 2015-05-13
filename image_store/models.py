@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class UserImage(models.Model):
+class Post(models.Model):
     title = models.CharField(max_length=30)
     description = models.CharField(max_length=140)
     image = models.ImageField(upload_to='image_store/')

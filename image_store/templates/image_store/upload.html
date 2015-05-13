@@ -1,0 +1,21 @@
+{% extends "rate_this/base.html" %}
+
+{% block title %}Post{% endblock %}
+
+{% block body_block %}
+
+{% load bootstrap %}
+
+<h1>Upload</h1>
+<hr>
+
+<div class="service-box ">
+    <form enctype="multipart/form-data" class="form-horizontal" method="post" action="/post/">
+		{% csrf_token %}
+		{{ post_form|bootstrap_horizontal:'col-lg-4' }}		
+	      
+	     <button type="submit" class="btn btn-primary">Post</button>
+
+	</form>
+</div>
+{% endblock %}

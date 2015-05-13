@@ -1,9 +1,9 @@
 from django import forms
-from .models import UserImage
+from .models import Post
 
 
-class UserImageForm(forms.ModelForm):
+class PostForm(forms.ModelForm):
 
     class Meta:
-        model = UserImage
+        model = Post
         fields = ['title', 'description', 'image']
