@@ -7,14 +7,22 @@
 
 <h1>{{post.title}}</h1>
 <hr>
+<div class="row">
 <img src="/media/{{post.image}}"class="img-responsive img-rounded">
+</div>
 <hr>
 <div class="row">
 <div class="col-md-8">
 	<p>{{post.description}}</p>
 </div>
 <div class="col-md-4">
-	<p>Upvotes : {{post.upvotes}} <button class="btn btn-primary btn pull-right">Upvote!</button></p>
+	<p>
+		<form method="post" action="/upvote/{{post.id}}/">	
+		{% csrf_token %}	
+		Upvotes : {{post.upvotes}} 
+			<button type="submit" class="btn {% if can_upvote %} btn-primary {% else %} btn-disabled {% endif%} pull-right">Upvote</button>
+		</form>
+	</p>
 </div>
 </div>
 <hr>
@@ -38,7 +46,7 @@
 
 <div class="row">
 	<div class="col-md-offset-4 col-md-8">
-		<form enctype="multipart/form-data" class="form-horizontal" method="post" action="/post/{{post.id}}/">
+		<form class="form-horizontal" method="post" action="/comment/{{post.id}}/">
 			{% csrf_token %}
 			{{ comment_form|bootstrap_horizontal:'col-lg-4' }}
 			<button type="submit" class="btn btn-primary pull-right">Comment</button>

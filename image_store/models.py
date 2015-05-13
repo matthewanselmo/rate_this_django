@@ -19,6 +19,14 @@ class Comment(models.Model):
     user = models.ForeignKey(User)
     post = models.ForeignKey(Post)
 
-    def get_comments_for_user(Post, User):
+    def get_comments_for_post(Post):
         comments = Comment.objects.filter(post_id=Post.id)
         return comments
+
+
+class UserUpvote(models.Model):
+    user = models.ForeignKey(User)
+    post = models.ForeignKey(Post)
+
+    def can_user_upvote(Post, User):
+        return not UserUpvote.objects.filter(post_id=Post.id).filter(user_id=User.id).exists()
