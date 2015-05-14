@@ -34,10 +34,10 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'registration',
+    'django.contrib.staticfiles',    
     'bootstrapform',
     'image_store',
+    'registration',
 )
 
 REGISTRATION_OPEN = True
@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'rate_this.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'rate_this_database',
+        'NAME': 'feedback_development',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': '127.0.0.1',
@@ -102,7 +102,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Toronto'
 
 USE_I18N = True
 

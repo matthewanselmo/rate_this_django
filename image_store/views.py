@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from .forms import PostForm, CommentForm
-from .models import Post, Comment, UserUpvote
+from .models import Post, Comment, UserUpvote, Tag
 
 
 def index(request):
@@ -30,6 +30,12 @@ def upload(request):
             post = post_form.save(commit=False)
             post.user = request.user
             post.save()
+            # post.tags.add(Tag.objects.get_all_tags())            
+            for tag in post_form.cleaned_data['tags']:
+                print(type(tag))
+                t = Tag.objects.get_tag(tag)
+                print(type(t))
+                post.tags.add(t)
 
             return index(request)
         else:
